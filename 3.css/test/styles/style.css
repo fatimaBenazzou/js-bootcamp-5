@@ -1,0 +1,77 @@
+body {
+  background-repeat: no-repeat;
+  background-size: 50%;
+  background-attachment: fixed;
+}
+
+h1 {
+  font-family: "Playwrite DE SAS", cursive;
+  color: blanchedalmond !important;
+}
+
+p {
+  /* color: chocolate; */
+}
+
+* {
+  color: yellowgreen;
+}
+
+h1 {
+  color: #f0009c;
+  text-align: center;
+
+  font-size: small;
+}
+
+h1 {
+  font-size: 5rem;
+  text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3);
+}
+
+.p-sect {
+  font-size: small;
+  background-color: blue;
+  border: 5px solid black;
+  padding: 10px 20px 50px 30px;
+  margin-bottom: 100px;
+  font-family: "Noto Sans JP", sans-serif;
+  line-height: 2;
+}
+
+.class-color {
+  color: aqua;
+}
+
+#contact {
+  font-size: large;
+  color: black;
+}
+
+[class="p-sect"]:nth-child(2) {
+  font-weight: 900;
+  color: aquamarine;
+  background-color: whitesmoke;
+}
+
+p:hover {
+  /* font-size: xx-large; */
+}
+
+ul {
+  list-style-position: inside;
+}
+ul,
+ol {
+  list-style-type: none; /* Supprime les puces ou numéros */
+  padding: 0; /* Enlève l'indentation par défaut */
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+}
+
+.box {
+  width: 200px;
+  height: 100px;
+  border: 1px solid black;
+}

@@ -1,0 +1,36 @@
+/* 1. Set the body background color to #e0f7fa */
+body {
+  background-color: #e0f7fa;
+}
+/* 2. Set the font-family to Arial, sans-serif */
+
+/* 3. Add a padding of 20px to the body */
+/* 4. Limit the content width to 900px and center it horizontally using margin */
+/* 5. Center the header text and add a bottom margin of 30px */
+/* 6. Set the header background color to #006064, text color to white, padding to 20px, and border-radius to 10px */
+/* 7. On hover, make the h1 color #ffeb3b and increase its font-size to 2.5em */
+/* 8. For the main > p element, set font-style to italic and color to #4a148c */
+/* 9. Add a margin-bottom of 10px to main > p */
+/* 10. Set the .intro background color to #fce4ec, padding to 15px, and border-radius to 8px */
+/* 11. Set a margin-bottom of 10px to paragraphs inside .intro */
+/* 12. Give .hello a background color of #ffffff, bold font, and padding of 5px */
+/* 13. Give #special a 2px solid border with color #3f51b5, text color #1a237e, and padding of 5px */
+/* 14. Set <em> inside .intro to color #d81b60 and italic style */
+/* 15. Style .checklist with a dashed 2px border in #8e24aa, padding of 15px, and margin-top of 20px */
+/* 17. Add a left margin of 30px to checked checkboxes */
+/* 18. On li:hover, change the background color to #f3e5f5 */
+/* 19. Use display: block and margin-bottom: 10px for form > * elements */
+/* 20. Style input and select with 8px padding, 1px solid #ccc border, and 4px border-radius */
+/* 21. Set all label text to uppercase and bold */
+/* 22. Style the submit button with background-color #00796b, white text, no border, 10px 15px padding, 4px border-radius, and cursor pointer */
+/* 23. On submit button hover, change background-color to #004d40 */
+/* 24. Set different background colors for .blog article:nth-of-type(1), (2), and (3): #e1f5fe, #fff8e1, and #f1f8e9 respectively */
+/* 25. Add 10px padding, 15px bottom margin, and 8px border-radius to all articles in .blog */
+/* 26. Style .blog h3 with font-size 1.4em and bold weight */
+/* 27. Add a box-shadow (0 2px 5px rgba(0, 0, 0, 0.1)) to .blog articles */
+/* 28. In .links a, remove underline, set color to #0288d1 and font-weight to bold */
+/* 29. On .links a:hover, add underline and change color to #01579b */
+/* 30. Make visited links gray */
+/* 31. Style the footer with background-color #006064, white text, centered text, 15px padding, 40px top margin, and 10px border-radius */
+/* 32. Set footer p font-size to 0.9em */
+/* 33. Use ::first-letter on #special to set font-size to 200% and color to green */

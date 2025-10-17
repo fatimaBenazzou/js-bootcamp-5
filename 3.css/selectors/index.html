@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Super CSS Challenge</title>
+        <link rel="stylesheet" href="solution.css" />
+    </head>
+    <body>
+        <header>
+            <h1>Welcome to Your CSS Challenge!</h1>
+        </header>
+
+        <main>
+            <p>This paragraph is outside of any section. Can you style it uniquely?</p>
+
+            <section class="intro">
+                <h2>Introduction</h2>
+                <p class="hello">Hello! I'm a stylish paragraph inside a section.</p>
+                <p id="special">I'm special. Treat me with a unique style!</p>
+                <p>
+                    This is a <em>fun</em> CSS exercise where you'll style everything using an
+                    external CSS file.
+                </p>
+            </section>
+
+            <section class="checklist">
+                <h2>Task List</h2>
+                <ul>
+                    <li>Style paragraphs <input type="checkbox" checked /></li>
+                    <li>Color backgrounds <input type="checkbox" /></li>
+                    <li>Use pseudo-classes <input type="checkbox" /></li>
+                    <li>Use hover effects <input type="checkbox" checked /></li>
+                    <li>Bonus level <input type="checkbox" /></li>
+                </ul>
+            </section>
+
+            <section class="contact">
+                <h2>Contact Form</h2>
+                <form>
+                    <label for="name">Name:</label>
+                    <input type="text" id="name" name="name" placeholder="Your name" />
+
+                    <label for="email">Email:</label>
+                    <input type="email" id="email" name="email" placeholder="you@example.com" />
+
+                    <label for="age">Age:</label>
+                    <input type="number" id="age" name="age" />
+
+                    <label for="language">Favorite Language:</label>
+                    <select id="language">
+                        <option value="html">HTML</option>
+                        <option value="css">CSS</option>
+                        <option value="js">JavaScript</option>
+                    </select>
+
+                    <button type="submit">Submit</button>
+                </form>
+            </section>
+
+            <section class="blog">
+                <h2>Blog Posts</h2>
+                <article>
+                    <h3>Post 1: CSS Basics</h3>
+                    <p>Learn how to select elements and apply styles!</p>
+                </article>
+                <article>
+                    <h3>Post 2: Layout Magic</h3>
+                    <p>Use Flexbox and Grid to create amazing layouts!</p>
+                </article>
+                <article>
+                    <h3>Post 3: Animations</h3>
+                    <p>Add life to your site with transitions and keyframes!</p>
+                </article>
+            </section>
+
+            <nav class="links">
+                <h2>Useful Links</h2>
+                <ul>
+                    <li><a href="#">Internal Page</a></li>
+                    <li><a href="https://developer.mozilla.org">MDN Web Docs</a></li>
+                    <li><a href="https://css-tricks.com">CSS-Tricks</a></li>
+                </ul>
+            </nav>
+        </main>
+
+        <footer>
+            <p>Tip: Don’t forget to use only external stylesheets!</p>
+        </footer>
+    </body>
+</html>

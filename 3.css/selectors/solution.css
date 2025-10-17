@@ -1,0 +1,213 @@
+/* 1. Set a the background color to e0f7fa for the body */
+body {
+    background-color: #e0f7fa;
+}
+
+/* 2. Choose a Arial font-family */
+body {
+    font-family: Arial, sans-serif;
+}
+
+/* 3. Add padding around the body to prevent content from touching the edges */
+body {
+    padding: 20px;
+}
+
+/* 4. limit the entire content to max width 900px */
+body {
+    max-width: 900px;
+}
+
+/* 5. Center the header text and add vertical spacing */
+header {
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+/* 6. Give the header a unique background and text color */
+header {
+    background-color: #006064;
+    color: white;
+    padding: 20px;
+    border-radius: 10px;
+}
+
+/* 7. Add a hover effect to the h1 (e.g., change color or font size) */
+h1:hover {
+    color: #ffeb3b;
+    font-size: 2.5em;
+    /* transition: all 0.3s ease-in-out; */
+}
+
+/* 8. Style the paragraph outside any section with a distinct font-style or color */
+main > p {
+    font-style: italic;
+    color: #4a148c;
+}
+
+/* 9. Try adding a different margin or padding to this paragraph */
+main > p {
+    margin-bottom: 20px;
+}
+
+/* 10. Give the .intro section a subtle background color */
+.intro {
+    background-color: #fce4ec;
+    padding: 15px;
+    border-radius: 8px;
+}
+
+/* 11. Add space between the paragraphs inside */
+.intro p {
+    margin-bottom: 10px;
+}
+
+/* 12. Give .hello a bold font and light background */
+.hello {
+    background-color: #ffffff;
+    font-weight: bold;
+    padding: 5px;
+}
+
+/* 13. Style #special with a border and different text color */
+#special {
+    border: 2px solid #3f51b5;
+    color: #1a237e;
+    padding: 5px;
+}
+
+/* 14. Make the <em> inside this section italic and a different color */
+.intro em {
+    color: #d81b60;
+    font-style: italic;
+}
+
+/* 15. Style the checklist section with a border and padding */
+.checklist {
+    border: 2px dashed #8e24aa;
+    padding: 15px;
+    margin-top: 20px;
+}
+
+/* 16. Make li elements have a different bullet style
+.checklist ul {
+    list-style-type: square;
+} */
+
+/* 17. Checked checkboxes should have a different left margin */
+input[type="checkbox"]:checked {
+    margin-left: 30px;
+}
+
+/* 18. Add a hover effect to li elements (e.g., change background) */
+li:hover {
+    background-color: #f3e5f5;
+}
+
+/* 19. Add spacing between form fields */
+form > * {
+    display: block;
+    margin-bottom: 10px;
+}
+
+/* 20. Style input and select elements to look clean and modern */
+input,
+select {
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+/* 21. All labels should be uppercase */
+label {
+    text-transform: uppercase;
+    font-weight: bold;
+}
+
+/* 22. The submit button should have a bold background color and change on hover */
+button[type="submit"] {
+    background-color: #00796b;
+    color: white;
+    border: none;
+    padding: 10px 15px;
+    border-radius: 4px;
+    cursor: pointer;
+}
+button[type="submit"]:hover {
+    background-color: #004d40;
+}
+
+/* 23. Use a different background color for each article */
+.blog article:nth-of-type(1) {
+    background-color: #e1f5fe;
+}
+.blog article:nth-of-type(2) {
+    background-color: #fff8e1;
+}
+.blog article:nth-of-type(3) {
+    background-color: #f1f8e9;
+}
+
+/* 24. Add padding and margin to separate articles clearly */
+.blog article {
+    padding: 10px;
+    margin-bottom: 15px;
+    border-radius: 8px;
+}
+
+/* 25. Style h3 elements to be larger and bold */
+.blog h3 {
+    font-size: 1.4em;
+    font-weight: bold;
+}
+
+/* 26. Add a subtle box-shadow around articles for a card-like effect */
+.blog article {
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+/* 27. Style the links in .links section with no underline and a bold color */
+.links a {
+    text-decoration: none;
+    color: #0288d1;
+    font-weight: bold;
+}
+
+/* 28. Add hover effects to links (like underline or color change) */
+.links a:hover {
+    text-decoration: underline;
+    color: #01579b;
+}
+
+/* 29. Visited links should appear gray */
+a:visited {
+    color: gray;
+}
+
+/* 30. Give the footer a similar style to the header */
+footer {
+    background-color: #006064;
+    color: white;
+    text-align: center;
+    padding: 15px;
+    margin-top: 40px;
+    border-radius: 10px;
+}
+
+/* 31. Center the footer text */
+footer {
+    text-align: center;
+}
+
+/* 32. Use a smaller font-size for the footer tip text */
+footer p {
+    font-size: 0.9em;
+}
+
+/* 33. Use a pseudo-element (::first-letter) to enlarge and color the first letter of #special */
+#special::first-letter {
+    font-size: 200%;
+    color: green;
+}
+
+/*  */
