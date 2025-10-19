@@ -6,4 +6,21 @@ nav {
   display: flex;
   align-items: center;
   gap: 3rem;
+  justify-content: space-between;
+}
+
+.navigation {
+  display: flex;
+  padding: 0 20px;
+  gap: 1.5rem;
+  margin-right: auto;
+}
+
+.navigation > li {
+  font-size: 1.25rem;
+}
+
+.navigation > li:hover,
+.navigation > li.active {
+  color: var(--primary-color);
 }
