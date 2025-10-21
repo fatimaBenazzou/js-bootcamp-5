@@ -18,6 +18,7 @@ body {
   font-weight: 400;
   font-family: "CabinetGrotesk-Variable", "Inter", "Roboto", "Arial",
     "sans-serif";
+  overflow-x: hidden;
 }
 
 main {

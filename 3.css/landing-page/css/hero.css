@@ -3,6 +3,7 @@
   flex-direction: column;
   align-items: center;
   gap: 4rem;
+  position: relative;
 }
 
 #hero h1 {
@@ -38,6 +39,7 @@
   width: 920px;
   max-width: 100%;
   padding-right: 1rem;
+  position: relative;
 }
 
 #hero .stats {
@@ -58,4 +60,26 @@
 
 #hero .stats li h2 span.number {
   color: inherit;
+}
+
+.explore,
+.arrow,
+.star {
+  position: absolute;
+}
+.explore {
+  top: 0;
+  right: 7%;
+  transform: translateY(-50%);
+}
+
+.arrow {
+  left: 0;
+  bottom: 0;
+  transform: translateY(60%);
+}
+
+.star {
+  top: 18%;
+  right: -5%;
 }
