@@ -1,0 +1,61 @@
+#hero {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4rem;
+}
+
+#hero h1 {
+  max-width: 16ch;
+}
+
+#hero p {
+  font-size: 1.25rem;
+}
+
+#hero .start {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 1rem;
+}
+
+#hero .start p {
+  max-width: 400px;
+  font-weight: 300;
+  flex-shrink: 0;
+}
+
+.hero-stats {
+  width: 100%;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 3rem;
+}
+
+.hero-image {
+  aspect-ratio: 920/522;
+  width: 920px;
+  max-width: 100%;
+  padding-right: 1rem;
+}
+
+#hero .stats {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  margin: 0 auto;
+}
+
+#hero .stats li {
+  display: flex;
+  flex-direction: column;
+  min-width: 300px;
+  border-bottom: solid 2px currentColor;
+  line-height: 2rem;
+  padding: 2rem 0;
+}
+
+#hero .stats li h2 span.number {
+  color: inherit;
+}
