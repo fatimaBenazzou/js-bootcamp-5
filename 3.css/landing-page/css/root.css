@@ -1,7 +1,7 @@
 :root {
   --primary-color: #ffdf00;
   --primary-color-hover: rgba(255, 223, 0, 0.08);
-  --secondary-color: rgb(27, 27, 27);
+  --secondary-color: 27, 27, 27;
   --base-color: #151515;
   --neutral-color: #ffffff;
 }
@@ -60,7 +60,7 @@ main span {
 }
 
 .btn-base:hover {
-  background-color: var(--secondary-color);
+  background-color: rgb(var(--secondary-color));
 }
 
 .btn-small {
