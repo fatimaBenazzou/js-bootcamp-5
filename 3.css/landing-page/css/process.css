@@ -1,0 +1,55 @@
+#process {
+  position: relative;
+  width: 100%;
+  display: flex;
+  gap: 2rem;
+}
+
+#process > img {
+  top: 0;
+  right: 0;
+  z-index: -1;
+  margin-left: auto;
+}
+
+#process .content {
+  position: absolute;
+  top: 0;
+  left: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 1.5rem;
+}
+
+#process .content h2 {
+  max-width: 600px;
+}
+
+#process .content ul {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+  padding: 0;
+}
+
+#process .content ul > li {
+  display: flex;
+  gap: 2rem;
+  align-items: center;
+}
+
+#process .content ul > li .circle {
+  width: 4rem;
+  height: 4rem;
+  flex-shrink: 0;
+  border-radius: 50%;
+  background-color: var(--primary-color);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+#process .content ul > li .circle span {
+  color: rgb(var(--secondary-color));
+}

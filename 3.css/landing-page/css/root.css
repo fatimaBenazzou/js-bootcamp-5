@@ -1,5 +1,6 @@
 :root {
   --primary-color: #ffdf00;
+  --primary-color-val: 255, 223, 0;
   --primary-color-hover: rgba(255, 223, 0, 0.08);
   --secondary-color: 27, 27, 27;
   --base-color: #151515;
@@ -91,13 +92,13 @@ h1 {
 }
 
 h2 {
-  font-size: 1.875rem;
-  line-height: 1.75rem;
+  font-size: 2.75rem;
+  line-height: 2.5rem;
 }
 
 h3 {
-  font-size: 1.125rem;
-  line-height: 1.5rem;
+  font-size: 1.5rem;
+  line-height: 1.875rem;
 }
 
 h4 {
@@ -131,3 +132,40 @@ h5 {
   font-size: 1.5rem;
   font-weight: 800;
 }
+
+/* tabs */
+.tabs {
+  display: flex;
+  gap: 2rem;
+  flex-wrap: wrap;
+}
+
+.tab {
+  border: 1px solid transparent;
+  padding-bottom: 1rem;
+  transition: border-color 0.3s ease-in-out, color 0.3s ease-in-out;
+  cursor: pointer;
+  font-weight: 600;
+  word-break: keep-all;
+  flex-shrink: 0;
+}
+
+.tab-active,
+.tab:hover {
+  border-bottom-color: var(--primary-color);
+  color: var(--primary-color);
+}
+
+.tab-content {
+  display: flex;
+  width: 100%;
+}
+
+.tab-pane {
+  /* display: none; */
+  display: block;
+  width: 100%;
+}
+/* .tab-pane.active {
+  display: block;
+} */

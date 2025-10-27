@@ -1,0 +1,61 @@
+.web-resources {
+  display: flex;
+  flex-direction: column;
+}
+
+.web-resources nav {
+  width: 100%;
+  display: flex;
+  align-items: start;
+  gap: 1rem;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  font-size: 1.25rem;
+  padding: 1rem 0;
+}
+
+.web-resources nav .more {
+  display: flex;
+  align-items: center;
+  text-decoration: underline;
+  color: var(--primary-color);
+  text-underline-offset: 0.4rem;
+  margin-left: auto;
+  gap: 0.3rem;
+}
+
+.web-resources nav .more span {
+  transition: transform 0.3s ease-in-out;
+}
+
+.resources-list {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 2rem;
+}
+
+.resource-card {
+  display: flex;
+  flex-direction: column;
+  border-radius: 1.25rem;
+  overflow: hidden;
+  color: var(--base-color);
+  background-color: var(--neutral-color);
+}
+
+.resource-card-image {
+  width: 100%;
+}
+
+.resource-card-body {
+  display: flex;
+  gap: 2rem;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem 2rem;
+  flex-wrap: wrap;
+}
+
+.resource-card-body .btn {
+  margin-left: auto;
+}
