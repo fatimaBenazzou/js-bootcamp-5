@@ -1,0 +1,31 @@
+footer {
+  margin-top: auto;
+  background-color: rgb(var(--secondary-color));
+  width: 100%;
+  padding: 2.5rem 0;
+  font-size: 0.875rem;
+}
+
+footer > .container {
+  gap: 3rem;
+  flex-wrap: wrap;
+}
+
+footer li {
+  transition: color 300ms ease-in;
+  font-weight: 400;
+}
+
+footer li:hover,
+footer li.active {
+  color: var(--primary-color);
+}
+
+footer .social {
+  gap: 1rem;
+}
+
+footer .links {
+  gap: 2rem;
+  margin-right: auto;
+}
