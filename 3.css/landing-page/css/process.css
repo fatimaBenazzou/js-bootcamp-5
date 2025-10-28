@@ -15,7 +15,7 @@
 #process .content {
   position: absolute;
   top: 0;
-  left: 0;
+  left: 10%;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -52,4 +52,27 @@
 
 #process .content ul > li .circle span {
   color: rgb(var(--secondary-color));
+}
+
+@media screen and (max-width: 1280px) {
+  #process {
+    flex-direction: column;
+  }
+
+  #process .content {
+    align-items: center;
+    position: unset;
+  }
+
+  #process .content h2 {
+    text-align: center;
+    max-width: unset;
+  }
+}
+
+@media (max-width: 768px) {
+  #process .content ul > li .circle {
+    width: 3rem;
+    height: 3rem;
+  }
 }

@@ -83,3 +83,40 @@
   top: 18%;
   right: -5%;
 }
+
+@media screen and (max-width: 1280px) {
+  #hero {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 4rem;
+  }
+  #hero .container {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  #hero h1 {
+    max-width: 16ch;
+  }
+  #hero p {
+    font-size: 1.25rem;
+  }
+
+  #heto .start {
+    max-width: 400px;
+    font-weight: 300;
+  }
+
+  #hero .hero-stats .stats {
+    gap: 2rem;
+    flex-direction: row;
+  }
+  #hero .hero-stats .stats li {
+    min-width: auto;
+    border-bottom: none;
+  }
+  .star {
+    display: none;
+  }
+}

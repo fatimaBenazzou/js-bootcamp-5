@@ -59,3 +59,19 @@
 .resource-card-body .btn {
   margin-left: auto;
 }
+
+@media screen and (max-width: 1280px) {
+  .resources-list {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+@media screen and (max-width: 768px) {
+  .resources-list {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+@media screen and (max-width: 450px) {
+  .resources-list {
+    grid-template-columns: repeat(1, 1fr);
+  }
+}

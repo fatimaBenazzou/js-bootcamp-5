@@ -186,3 +186,32 @@
   top: 5%;
   left: 5%;
 }
+
+@media screen and (max-width: 1280px) {
+  main #testimonials .content {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+  }
+  #review-slider {
+    width: 100%;
+    max-width: 100%;
+    font-size: 18px;
+  }
+  .review-container > li {
+    align-items: center;
+  }
+  .action {
+    position: unset;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .rating span {
+    width: 20px;
+    height: 20px;
+  }
+  .figure {
+    margin-bottom: 2rem;
+  }
+}
