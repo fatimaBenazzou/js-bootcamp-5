@@ -1,0 +1,27 @@
+ALGORITHM sumFraction 
+VAR
+    n, i, s : INTEGER;
+BEGIN
+    Read(n);
+    s := 0;
+    FOR i FROM 1 TO n STEP 1  DO
+        sum = sum + i;
+    END_FOR
+
+    Write(s);
+END
+
+ALGORITHM sumFraction 
+VAR
+    n, s : INTEGER;
+BEGIN
+    Read(n);
+    s := 0;
+
+    WHILE (n > 0) DO
+        s = s + n;
+        n--;
+    EndWhile
+
+    Write(s);
+END

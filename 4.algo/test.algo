@@ -1,0 +1,10 @@
+ALGORITHM SwapValues
+VAR
+    x, y, temp : INTEGER;
+BEGIN
+    Read(x, y);               // Input values of x and y
+    temp := x;                 // Store the value of x in temp
+    x := y;                    // Assign the value of y to x
+    y := temp;                 // Assign the value of temp (original x) to y
+    Write("After swapping: x = ", x, " y = ", y);
+END

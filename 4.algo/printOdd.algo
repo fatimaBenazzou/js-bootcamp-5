@@ -1,0 +1,19 @@
+ALGORITHM PrintOddNumbers
+VAR
+    start, end, i : Integer;
+BEGIN
+    Write("Enter the starting number: ");
+    Read(start);
+    Write("Enter the ending number: ");
+    Read(end);
+
+    Write("Odd numbers between ", start, " and ", end, ":");
+    WHILE (i>= start && i<=end) DO
+        IF (i % 2 != 0) THEN
+            Write(i)
+        END_IF
+
+        i++
+    END_WHILE
+    
+END

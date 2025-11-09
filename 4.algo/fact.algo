@@ -1,0 +1,13 @@
+ALGORITHM factoriel 
+VAR
+    n, i, p : INTEGER;
+BEGIN
+    Read(n);
+    p := 1;
+
+    FOR i FROM n TO 1 STEP -1  DO
+        p := p * i;
+    END_FOR
+
+    Write(p);
+END

@@ -1,0 +1,13 @@
+ALGORITHM oddOrEven
+VAR
+    number: INTEGER
+BEGIN
+    Write("Enter a number ")
+    Read(number)
+
+    IF (number % 2 == 0) THEN
+        Write(number, " is Even !!")
+    ELSE
+        Write(number, " is Odd !!")
+    END_IF
+END
