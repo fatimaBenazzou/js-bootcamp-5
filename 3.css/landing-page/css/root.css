@@ -10,7 +10,7 @@
 body {
   display: flex;
   flex-direction: column;
-  gap: 2rem;
+  gap: 4rem;
   min-height: 100vh;
   margin: 0;
   padding: 0;
@@ -27,7 +27,6 @@ main {
   flex-direction: column;
   gap: 5rem;
   width: 100%;
-  margin: 2rem 0rem;
 }
 
 main span {
