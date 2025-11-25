@@ -30,6 +30,13 @@
 #banner-1 img {
   filter: invert(1);
 }
+
+#banner-1 .banner-container {
+  animation: tape-loop 15s linear infinite reverse;
+}
+#banner-2 .banner-container {
+  animation: tape-loop 15s linear infinite;
+}
 #banner-2 {
   position: absolute;
   top: 30%;
@@ -38,4 +45,13 @@
   z-index: 4;
   background-color: rgba(var(--secondary-color), 0.15);
   backdrop-filter: blur(8px);
+}
+
+@keyframes tape-loop {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-50%);
+  }
 }

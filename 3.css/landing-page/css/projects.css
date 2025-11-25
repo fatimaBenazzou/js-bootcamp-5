@@ -129,6 +129,11 @@
   width: 3rem;
 }
 
+.project-dots .dot.dot--selected {
+  width: 4rem;
+  background-color: rgba(var(--primary-color-val), 1);
+}
+
 #projects .main-color {
   background-color: var(--primary-color);
   width: 100%;
