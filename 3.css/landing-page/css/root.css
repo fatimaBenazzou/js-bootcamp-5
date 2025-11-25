@@ -214,3 +214,34 @@ h5 {
     max-width: 1536px;
   }
 }
+
+/* animations */
+[data-observe-me] {
+  opacity: 0;
+  transform: translateY(40px);
+  visibility: hidden;
+}
+/* fade in animation */
+[data-observe-me][visible] {
+  opacity: 1;
+  transform: translateY(0);
+  visibility: visible;
+  transition: opacity 0.8s ease, transform 0.8s ease;
+}
+
+/* left slide animation */
+[data-observe-me][data-slide="left"] {
+  transform: translateX(-40px);
+}
+[data-observe-me][data-slide="left"][visible] {
+  transform: translateX(0);
+  opacity: 1;
+}
+/* right slide animation */
+[data-observe-me][data-slide="right"] {
+  transform: translateX(40px);
+}
+[data-observe-me][data-slide="right"][visible] {
+  transform: translateX(0);
+  opacity: 1;
+}

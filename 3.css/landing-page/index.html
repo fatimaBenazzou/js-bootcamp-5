@@ -48,51 +48,65 @@
     <!-- main content -->
     <main>
       <!-- hero section -->
-      <section id="hero">
+      <section id="hero" data-observe-me>
         <!-- 1st part -->
         <div class="container row">
-          <h1>we create beautiful <span>efficient</span> agencies websites.</h1>
+          <h1 data-observe-me data-slide="left">
+            we create beautiful <span>efficient</span> agencies websites.
+          </h1>
           <div class="start">
-            <p>
+            <p data-observe-me data-slide="right">
               You need to get positive results when you spend hard earned
               marketing and promotions need to get positive results when you
             </p>
-            <button class="btn">Get Started</button>
+            <button class="btn" data-observe-me data-slide="right">
+              Get Started
+            </button>
           </div>
         </div>
 
         <!-- 2nd part -->
         <div class="hero-stats">
           <div class="hero-image">
-            <img class="img" src="./images/hero.png" alt="Hero image" />
+            <img
+              class="img"
+              src="./images/hero.png"
+              alt="Hero image"
+              data-observe-me
+              data-slide="left"
+            />
 
             <!-- decoration -->
 
             <img
+              data-observe-me
+              data-slide="left"
               class="explore"
               src="./images/explore.png"
               alt="explore decoration"
             />
             <img
+              data-observe-me
+              data-slide="left"
               class="arrow"
               src="./images/arrow.svg"
               alt="arrow decoration"
             />
           </div>
           <ul class="stats">
-            <li>
+            <li data-observe-me data-slide="right">
               <h2>
                 <span data-count="13" class="number">0</span><span>+</span>
               </h2>
               <p>Awards won</p>
             </li>
-            <li>
+            <li data-observe-me data-slide="right">
               <h2>
                 <span data-count="500" class="number">0</span><span>+</span>
               </h2>
               <p>Projects Done</p>
             </li>
-            <li>
+            <li data-observe-me data-slide="right">
               <h2>
                 <span data-count="274" class="number">0</span><span>+</span>
               </h2>
@@ -149,7 +163,7 @@
       </section>
 
       <!-- services -->
-      <section id="services" class="container">
+      <section id="services" class="container" data-observe-me>
         <h4>Our services</h4>
         <h2>What do we <span>Provide</span>?</h2>
         <ul>
@@ -625,5 +639,9 @@
         <p class="copyright">Copyright 2025 | GMC</p>
       </div>
     </footer>
+
+    <!-- JS -->
+    <script src="js/script.js"></script>
+    <script src="js/hero.js"></script>
   </body>
 </html>
