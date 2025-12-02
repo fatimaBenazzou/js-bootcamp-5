@@ -1,0 +1,11 @@
+@import "tailwindcss";
+
+@theme {
+  --color-primary: #125469; /* Using HSL values for better flexibility (hue saturation lightness) */
+  --color-secondary: 260 70% 45%;
+  --color-neutral-text: #ffffff; /* For dark text */
+}
+
+.test {
+  @apply text-lg font-bold text-red-900 bg-gray-200;
+}
