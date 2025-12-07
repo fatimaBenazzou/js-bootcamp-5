@@ -1,11 +1,41 @@
+@import url("https://fonts.googleapis.com/css2?family=Sora:wght@100..800&family=Source+Code+Pro:ital,wght@0,200..900;1,200..900&family=Space+Grotesk:wght@300..700&display=swap");
+
 @import "tailwindcss";
 
 @theme {
-  --color-primary: #125469; /* Using HSL values for better flexibility (hue saturation lightness) */
-  --color-secondary: 260 70% 45%;
-  --color-neutral-text: #ffffff; /* For dark text */
-}
+  /* Colors */
+  --color-accent-lavender: #ac6aff;
+  --color-accent-orange: #ffc876;
+  --color-accent-red: #ff776f;
+  --color-accent-green: #7adb78;
+  --color-accent-purple: #858dff;
+  --color-accent-pink: #ff98e2;
 
-.test {
-  @apply text-lg font-bold text-red-900 bg-gray-200;
+  /* Neutrals */
+  --color-bg: #0e0c15;
+  --color-neutral: #ffffff;
+  --color-neutral-2: #474060;
+  --color-base: #ada8c3;
+  --color-border: #252134;
+
+  /* Stroke colors */
+  --color-stroke: #26242c;
+
+  /* fonts */
+  --font-sora: "Sora", sans-serif;
+  --font-code: "Source Code Pro", monospace;
+  --font-grotesk: "Space Grotesk", sans-serif;
+
+  /* Border width */
+  --border-width-default: 0.0625rem;
+
+  /* Transitions */
+  --duration-default: 200ms;
+  --timing-function-default: linear;
+
+  /* Spacing scale improvements */
+  --spacing-0-25: 0.0625rem;
+  --spacing-7-5: 1.875rem;
+  --spacing-15: 3.75rem;
+  --spacing-px: 1px;
 }
