@@ -1,4 +1,5 @@
 import { useState } from "react";
+import Button from "./Button";
 
 const navigation = [
   {
@@ -80,18 +81,24 @@ export default function Header() {
         </div>
 
         {/* actions */}
-        <a href="/" className="hidden lg:block hover:text-neutral mr-8">
+        <a href="/" className="button hidden lg:block hover:text-neutral mr-8">
           New account
         </a>
-        <button className="hidden lg:flex">Sign in</button>
+        <Button className="hidden lg:flex" href="/login">
+          Sign in
+        </Button>
 
         {/* hamburger */}
-        <button
+        <Button
           onClick={toggleNavigation}
           className="lg:hidden ml-auto hover:scale-110 transition-transform duration-300 active:scale-95"
         >
-          {openNavigation ? <span>X</span> : <span>Menu</span>}
-        </button>
+          {openNavigation ? (
+            <span className="icon-[mdi--close]  w-4 h-4"></span>
+          ) : (
+            <span className="icon-[mdi--menu] w-4 h-4"></span>
+          )}
+        </Button>
       </nav>
     </header>
   );

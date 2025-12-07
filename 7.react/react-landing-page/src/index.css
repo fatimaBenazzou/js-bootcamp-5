@@ -1,6 +1,7 @@
 @import url("https://fonts.googleapis.com/css2?family=Sora:wght@100..800&family=Source+Code+Pro:ital,wght@0,200..900;1,200..900&family=Space+Grotesk:wght@300..700&display=swap");
 
 @import "tailwindcss";
+@plugin "@iconify/tailwind4";
 
 @theme {
   /* Colors */
@@ -38,4 +39,25 @@
   --spacing-7-5: 1.875rem;
   --spacing-15: 3.75rem;
   --spacing-px: 1px;
+}
+
+@utility bg-conic-gradient {
+  background-image: conic-gradient(
+    from 225deg,
+    var(--color-accent-orange),
+    #79fff7,
+    var(--color-accent-lavender),
+    var(--color-accent-pink),
+    var(--color-accent-orange)
+  );
+}
+.gradient-border {
+  @apply relative items-center justify-center p-0.5;
+}
+.gradient-border::before {
+  @apply absolute content-[''] inset-0 bg-conic-gradient;
+}
+
+.button {
+  @apply font-code text-xs font-bold uppercase tracking-wider rounded-xl;
 }
