@@ -1,13 +1,19 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Header from "./components/Header";
 
 export default function App() {
-  const [theme, setTheme] = useState("dark");
+  const [theme, setTheme] = useState(
+    () => localStorage.getItem("theme") || "dark"
+  );
 
   const toggleTheme = () => {
     const newTheme = theme === "dark" ? "light" : "dark";
     setTheme(newTheme);
   };
+
+  useEffect(() => {
+    localStorage.setItem("theme", theme);
+  }, [theme]);
 
   return (
     <div
@@ -19,7 +25,9 @@ export default function App() {
         backgroundPosition: "top center",
       }}
     >
-      <Header theme={theme} toggleTheme={toggleTheme} />
+      <div className="container mx-auto px-4 pt-12 max-w-lg">
+        <Header theme={theme} toggleTheme={toggleTheme} />
+      </div>
     </div>
   );
 }
