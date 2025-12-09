@@ -1,7 +1,12 @@
 import AddTodo from "./AddTodo";
 import TodoItem from "./TodoItem";
 
-export default function TodoList({ todos, addTodo }) {
+export default function TodoList({
+  todos,
+  addTodo,
+  toggleTodoCompletion,
+  deleteTodo,
+}) {
   return (
     <section>
       {/* input */}
@@ -11,7 +16,14 @@ export default function TodoList({ todos, addTodo }) {
         <div className="card-body">
           <ul>
             {todos.length > 0 ? (
-              todos.map((todo) => <TodoItem key={todo.id} todo={todo} />)
+              todos.map((todo) => (
+                <TodoItem
+                  key={todo.id}
+                  todo={todo}
+                  toggleTodoCompletion={toggleTodoCompletion}
+                  deleteTodo={deleteTodo}
+                />
+              ))
             ) : (
               <li className="p-12 text-center">
                 <p className="text-base-content/70 font-medium">

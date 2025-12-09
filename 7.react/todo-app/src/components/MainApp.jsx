@@ -17,13 +17,42 @@ export default function MainApp() {
     setTodos((prevTodos) => [newTodo, ...prevTodos]);
   };
 
-  const toggleTodoCompletion = (id) => {};
+  const toggleTodoCompletion = (id) => {
+    setTodos((prevTodos) =>
+      prevTodos.map((todo) =>
+        todo.id === id ? { ...todo, isComplete: !todo.isComplete } : todo
+      )
+    );
+  };
+
+  // const editTodo = (id, newText) => {
+  //   if (newText.trim() === "") return;
+
+  //   setTodos((prevTodos) =>
+  //     prevTodos.map((todo) =>
+  //       todo.id === id ? { ...todo, text: newText } : todo
+  //     )
+  //   );
+  // };
+
+  const deleteTodoItem = (id) => {
+    setTodos((prevTodos) => prevTodos.filter((todo) => todo.id !== id));
+  };
+
+  // const clearCompleted = () => {
+  //   setTodos((prevTodos) => prevTodos.filter((todo) => !todo.isComplete));
+  // };
 
   console.log(todos);
   return (
     <main>
       {/* todolist */}
-      <TodoList todos={todos} addTodo={addTodo} />
+      <TodoList
+        todos={todos}
+        addTodo={addTodo}
+        toggleTodoCompletion={toggleTodoCompletion}
+        deleteTodo={deleteTodoItem}
+      />
       {/* filters */}
     </main>
   );
