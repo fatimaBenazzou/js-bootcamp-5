@@ -1,4 +1,9 @@
-export default function TodoItem({ todo, toggleTodoCompletion, deleteTodo }) {
+export default function TodoItem({
+  todo,
+  toggleTodoCompletion,
+  deleteTodo,
+  handleEdit,
+}) {
   return (
     <li className="flex justify-between items-center py-4 border-b border-base-200">
       <div className="flex items-center gap-2">
@@ -14,7 +19,10 @@ export default function TodoItem({ todo, toggleTodoCompletion, deleteTodo }) {
       </div>
       {/* actions */}
       <div className="flex">
-        <button className="btn btn-ghost btn-sm hover:btn-primary hover:scale-110 transition-all">
+        <button
+          className="btn btn-ghost btn-sm hover:btn-primary hover:scale-110 transition-all"
+          onClick={() => handleEdit(todo.id, todo.text)}
+        >
           <span className="icon-[iwwa--edit] text-base-content"></span>
         </button>
         <button

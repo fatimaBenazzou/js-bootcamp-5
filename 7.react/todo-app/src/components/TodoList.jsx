@@ -1,4 +1,6 @@
+import { useRef, useState } from "react";
 import AddTodo from "./AddTodo";
+import EditModal from "./EditModal";
 import TodoItem from "./TodoItem";
 
 export default function TodoList({
@@ -6,7 +8,22 @@ export default function TodoList({
   addTodo,
   toggleTodoCompletion,
   deleteTodo,
+  editTodo,
 }) {
+  const dialogRef = useRef(null);
+  const [dialog, setDialog] = useState({ id: null, text: "" });
+
+  const handleEdit = (id, currentValue) => {
+    setDialog({ id, text: currentValue });
+    dialogRef.current?.showModal();
+  };
+
+  const saveTodo = () => {
+    if (dialog.text?.trim()) {
+      editTodo(dialog.id, dialog.text);
+      dialog.current?.close();
+    }
+  };
   return (
     <section>
       {/* input */}
@@ -22,6 +39,7 @@ export default function TodoList({
                   todo={todo}
                   toggleTodoCompletion={toggleTodoCompletion}
                   deleteTodo={deleteTodo}
+                  handleEdit={handleEdit}
                 />
               ))
             ) : (
@@ -34,6 +52,12 @@ export default function TodoList({
           </ul>
         </div>
       </div>
+      <EditModal
+        dialogRef={dialogRef}
+        dialog={dialog}
+        setDialog={setDialog}
+        saveTodo={saveTodo}
+      />
     </section>
   );
 }
