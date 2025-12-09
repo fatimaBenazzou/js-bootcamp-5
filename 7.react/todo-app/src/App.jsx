@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import Header from "./components/Header";
+import MainApp from "./components/MainApp";
 
 export default function App() {
   const [theme, setTheme] = useState(
@@ -27,6 +28,7 @@ export default function App() {
     >
       <div className="container mx-auto px-4 pt-12 max-w-lg">
         <Header theme={theme} toggleTheme={toggleTheme} />
+        <MainApp />
       </div>
     </div>
   );
