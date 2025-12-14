@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useCallback, useEffect, useMemo, useState } from "react";
 import TodoList from "./TodoList";
 import Filters from "./Filters";
 
@@ -9,12 +9,14 @@ export default function MainApp() {
   });
 
   const [filter, setFilter] = useState("all");
+  const [sortBy, setSortBy] = useState("alphabetical");
+  const [searchQuery, setSearchQuery] = useState("");
 
   useEffect(() => {
     localStorage.setItem("todos", JSON.stringify(todos));
   }, [todos]);
 
-  const addTodo = (text) => {
+  const addTodo = useCallback((text) => {
     if (text.trim() === "") return;
 
     const newTodo = {
@@ -25,17 +27,17 @@ export default function MainApp() {
     };
 
     setTodos((prevTodos) => [newTodo, ...prevTodos]);
-  };
+  }, []);
 
-  const toggleTodoCompletion = (id) => {
+  const toggleTodoCompletion = useCallback((id) => {
     setTodos((prevTodos) =>
       prevTodos.map((todo) =>
         todo.id === id ? { ...todo, isComplete: !todo.isComplete } : todo
       )
     );
-  };
+  }, []);
 
-  const editTodo = (id, newText) => {
+  const editTodo = useCallback((id, newText) => {
     if (newText.trim() === "") return;
 
     setTodos((prevTodos) =>
@@ -43,32 +45,66 @@ export default function MainApp() {
         todo.id === id ? { ...todo, text: newText } : todo
       )
     );
-  };
+  }, []);
 
-  const deleteTodoItem = (id) => {
+  const deleteTodoItem = useCallback((id) => {
     setTodos((prevTodos) => prevTodos.filter((todo) => todo.id !== id));
-  };
+  }, []);
 
-  const clearCompleted = () => {
+  const clearCompleted = useCallback(() => {
     setTodos((prevTodos) => prevTodos.filter((todo) => !todo.isComplete));
-  };
+  }, []);
 
-  const filteredTodos = todos.filter((todo) => {
-    if (filter === "active") return !todo.isComplete;
-    if (filter === "completed") return todo.isComplete;
-    return true;
-  });
+  const displayedTodos = useMemo(() => {
+    const filteredTodos = todos.filter((todo) => {
+      if (filter === "active") return !todo.isComplete;
+      if (filter === "completed") return todo.isComplete;
+      return true;
+    });
 
-  const itemsLeft = todos.filter((todo) => !todo.isComplete).length;
+    const searched =
+      searchQuery.trim() === ""
+        ? filteredTodos
+        : filteredTodos.filter((todo) =>
+            todo.text.toLowerCase().includes(searchQuery.toLowerCase())
+          );
+
+    const sorted = [...searched];
+    switch (sortBy) {
+      case "dateNewest":
+        return sorted.sort(
+          (a, b) => new Date(b.createdAt || 0) - new Date(a.createdAt || 0)
+        );
+      case "dateOldest":
+        return sorted.sort(
+          (a, b) => new Date(a.createdAt || 0) - new Date(b.createdAt || 0)
+        );
+      case "alphabetical":
+        return sorted.sort((a, b) =>
+          a.text.localeCompare(b.text, undefined, { sensitivity: "base" })
+        );
+      default:
+        sorted;
+    }
+  }, [todos, filter, searchQuery, sortBy]);
+
+  const itemsLeft = useMemo(
+    () => todos.filter((todo) => !todo.isComplete).length,
+    [todos]
+  );
+
   return (
     <main>
       {/* todolist */}
       <TodoList
-        todos={filteredTodos}
+        todos={displayedTodos}
         addTodo={addTodo}
         toggleTodoCompletion={toggleTodoCompletion}
         deleteTodo={deleteTodoItem}
         editTodo={editTodo}
+        setSortBy={setSortBy}
+        searchQuery={searchQuery}
+        setSearchQuery={setSearchQuery}
       />
       {/* filters */}
       <Filters

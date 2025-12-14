@@ -1,7 +1,9 @@
-import { useRef, useState } from "react";
+import { useCallback, useRef, useState } from "react";
 import AddTodo from "./AddTodo";
 import EditModal from "./EditModal";
 import TodoItem from "./TodoItem";
+import SortingDropdown from "./SortingDropdown";
+import SearchBar from "./SearchBar";
 
 export default function TodoList({
   todos,
@@ -9,14 +11,17 @@ export default function TodoList({
   toggleTodoCompletion,
   deleteTodo,
   editTodo,
+  setSortBy,
+  searchQuery,
+  setSearchQuery,
 }) {
   const dialogRef = useRef(null);
   const [dialog, setDialog] = useState({ id: null, text: "" });
 
-  const handleEdit = (id, currentValue) => {
+  const handleEdit = useCallback((id, currentValue) => {
     setDialog({ id, text: currentValue });
     dialogRef.current?.showModal();
-  };
+  }, []);
 
   const saveTodo = () => {
     if (dialog.text?.trim()) {
@@ -24,6 +29,7 @@ export default function TodoList({
       dialog.current?.close();
     }
   };
+
   return (
     <section>
       {/* input */}
@@ -31,6 +37,13 @@ export default function TodoList({
       {/* list */}
       <div className="card bg-base-100 shadow-lg rounded-lg">
         <div className="card-body">
+          <div className="flex justify-between items-center gap-2">
+            <SearchBar
+              searchQuery={searchQuery}
+              setSearchQuery={setSearchQuery}
+            />
+            <SortingDropdown setSortBy={setSortBy} />
+          </div>
           <ul>
             {todos.length > 0 ? (
               todos.map((todo) => (
