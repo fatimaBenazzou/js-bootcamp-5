@@ -11,10 +11,7 @@ export default function Routers() {
     <Routes>
       <Route path="/" element={<Home />} />
       <Route path="/recipes" element={<Recipes />} />
-      <Route path="/recipes/:id" element={<RecipeDetail />}>
-        <Route index element={<RecipeDetail />} />
-        <Route path="instructions" element={<RecipeDetail />} />
-      </Route>
+      <Route path="/recipes/:id" element={<RecipeDetail />} />
       <Route path="/about" element={<About />} />
       <Route path="*" element={<NotFound />} />
     </Routes>
