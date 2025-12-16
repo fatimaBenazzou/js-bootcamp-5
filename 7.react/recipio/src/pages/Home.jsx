@@ -1,10 +1,10 @@
-import React from "react";
+import { Link } from "react-router";
 
 export default function Home() {
   return (
     <div>
       <h1>Home</h1>
-      <a href="/about">About</a>
+      <Link to="/about">About</Link>
     </div>
   );
 }
