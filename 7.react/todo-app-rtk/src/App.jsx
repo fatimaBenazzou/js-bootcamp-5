@@ -1,16 +1,10 @@
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import Header from "./components/Header";
 import MainApp from "./components/MainApp";
+import { useTheme } from "./hooks/useTheme";
 
 export default function App() {
-  const [theme, setTheme] = useState(
-    () => localStorage.getItem("theme") || "dark"
-  );
-
-  const toggleTheme = () => {
-    const newTheme = theme === "dark" ? "light" : "dark";
-    setTheme(newTheme);
-  };
+  const { theme } = useTheme();
 
   useEffect(() => {
     localStorage.setItem("theme", theme);
@@ -27,7 +21,7 @@ export default function App() {
       }}
     >
       <div className="container mx-auto px-4 pt-12 max-w-lg">
-        <Header theme={theme} toggleTheme={toggleTheme} />
+        <Header />
         <MainApp />
       </div>
     </div>

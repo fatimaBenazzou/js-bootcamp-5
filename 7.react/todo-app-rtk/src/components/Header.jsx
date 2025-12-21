@@ -1,4 +1,8 @@
-export default function Header({ theme, toggleTheme }) {
+import { useTheme } from "../hooks/useTheme";
+
+export default function Header() {
+  const { theme, toggleTheme } = useTheme();
+
   return (
     <header className="flex justify-between items-center mb-8">
       <h1 className="text-4xl font-bold text-white tracking-wider drop-shadow-lg uppercase">
