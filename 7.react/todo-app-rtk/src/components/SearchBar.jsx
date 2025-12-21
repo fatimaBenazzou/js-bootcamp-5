@@ -1,6 +1,8 @@
-import React from "react";
+import { useTodos } from "../hooks/useTodos";
 
-export default function SearchBar({ searchQuery, setSearchQuery }) {
+export default function SearchBar() {
+  const { searchQuery, setSearchQuery } = useTodos();
+
   return (
     <form className="flex items-center gap-2 flex-1">
       <input

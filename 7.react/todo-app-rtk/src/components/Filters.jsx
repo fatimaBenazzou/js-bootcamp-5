@@ -1,11 +1,10 @@
+import { useTodos } from "../hooks/useTodos";
+
 const buttons = ["all", "active", "completed"];
 
-export default function Filters({
-  itemsLeft,
-  filter,
-  setFilter,
-  clearCompleted,
-}) {
+export default function Filters() {
+  const { itemsLeft, filter, setFilter, clearCompleted } = useTodos();
+
   return (
     <section className="card text-center text-gray-400 mt-8 flex bg-base-100 shadow-lg rounded-lg">
       <div className="card-body">

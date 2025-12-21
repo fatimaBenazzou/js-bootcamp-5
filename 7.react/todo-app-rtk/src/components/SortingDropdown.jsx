@@ -1,10 +1,14 @@
+import { useTodos } from "../hooks/useTodos";
+
 const sortOptions = [
   { value: "dateNewest", label: "Newest First", icon: "⬇️" },
   { value: "dateOldest", label: "Oldest First", icon: "⬆️" },
   { value: "alphabetical", label: "A-Z", icon: "🔤" },
 ];
 
-export default function SortingDropdown({ setSortBy }) {
+export default function SortingDropdown() {
+  const { setSortBy } = useTodos();
+
   return (
     <div className="dropdown">
       <div tabIndex={0} role="button" className="btn m-1 btn-primary">

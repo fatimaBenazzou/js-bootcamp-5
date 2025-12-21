@@ -4,17 +4,11 @@ import EditModal from "./EditModal";
 import TodoItem from "./TodoItem";
 import SortingDropdown from "./SortingDropdown";
 import SearchBar from "./SearchBar";
+import { useTodos } from "../hooks/useTodos";
 
-export default function TodoList({
-  todos,
-  addTodo,
-  toggleTodoCompletion,
-  deleteTodo,
-  editTodo,
-  setSortBy,
-  searchQuery,
-  setSearchQuery,
-}) {
+export default function TodoList() {
+  const { todos, editTodo } = useTodos();
+
   const dialogRef = useRef(null);
   const [dialog, setDialog] = useState({ id: null, text: "" });
 
@@ -33,27 +27,18 @@ export default function TodoList({
   return (
     <section>
       {/* input */}
-      <AddTodo addTodo={addTodo} />
+      <AddTodo />
       {/* list */}
       <div className="card bg-base-100 shadow-lg rounded-lg">
         <div className="card-body">
           <div className="flex justify-between items-center gap-2">
-            <SearchBar
-              searchQuery={searchQuery}
-              setSearchQuery={setSearchQuery}
-            />
-            <SortingDropdown setSortBy={setSortBy} />
+            <SearchBar />
+            <SortingDropdown />
           </div>
           <ul>
             {todos.length > 0 ? (
               todos.map((todo) => (
-                <TodoItem
-                  key={todo.id}
-                  todo={todo}
-                  toggleTodoCompletion={toggleTodoCompletion}
-                  deleteTodo={deleteTodo}
-                  handleEdit={handleEdit}
-                />
+                <TodoItem key={todo.id} todo={todo} handleEdit={handleEdit} />
               ))
             ) : (
               <li className="p-12 text-center">

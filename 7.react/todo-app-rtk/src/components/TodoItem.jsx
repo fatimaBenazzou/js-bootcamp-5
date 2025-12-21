@@ -1,9 +1,12 @@
+import { useTodos } from "../hooks/useTodos";
+
 export default function TodoItem({
   todo,
-  toggleTodoCompletion,
-  deleteTodo,
+
   handleEdit,
 }) {
+  const { toggleTodoCompletion, deleteTodo } = useTodos();
+
   return (
     <li className="flex justify-between items-center py-4 border-b border-base-200">
       <div className="flex items-center gap-2">
