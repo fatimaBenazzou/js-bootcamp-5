@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import { getWeather } from "./api/endpoints/weather";
 
 const details = [
   {
@@ -77,7 +78,7 @@ export default function App() {
     setIsLoading(true);
     setError(null);
     try {
-      const response = await fetch(
+      /*    const response = await fetch(
         `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${
           import.meta.env.VITE_API_KEY
         }&units=metric`
@@ -86,6 +87,14 @@ export default function App() {
 
       if (data.cod === 200) {
         setWeatherData(data);
+      } else {
+        throw new Error("City not Found.");
+      } */
+
+      const response = await getWeather({ city });
+
+      if (response.status === 200) {
+        setWeatherData(response.data);
       } else {
         throw new Error("City not Found.");
       }
