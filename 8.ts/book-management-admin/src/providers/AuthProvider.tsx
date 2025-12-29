@@ -33,6 +33,9 @@ export default function AuthProvider({
   const isAuthenticated = user !== null;
   const isAdmin = user?.role === "admin";
 
+  const AUTH_TOKEN_KEY = "token";
+  const AUTH_USER_KEY = "user";
+
   const login = (credentials: LoginCredentialsI) => {
     setIsLoading(true);
 
@@ -51,7 +54,25 @@ export default function AuthProvider({
         name: foundUser.name,
         avatar: foundUser.avatar,
       };
+
+      const token = `mock_token_${Date.now()}_${foundUser.id}`;
+
+      const storage = credentials.rememberMe ? localStorage : sessionStorage;
+      storage.setItem(AUTH_TOKEN_KEY, token);
+      storage.setItem(AUTH_USER_KEY, JSON.stringify(authUser));
+
+      setUser(authUser);
+      setIsLoading(false);
+      return true;
     }
+
+    setError("Invalid email or password");
+    setIsLoading(false);
+    return false;
   };
-  return <AuthContext.Provider value={{}}>{children}</AuthContext.Provider>;
+  return (
+    <AuthContext.Provider value={{ user, login }}>
+      {children}
+    </AuthContext.Provider>
+  );
 }
