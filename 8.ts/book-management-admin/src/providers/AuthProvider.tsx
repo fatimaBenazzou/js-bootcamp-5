@@ -21,20 +21,49 @@ const mockAuthUsers = [
   },
 ];
 
+const AUTH_TOKEN_KEY = "token";
+const AUTH_USER_KEY = "user";
+
+function getStoredAuth(): { user: UserI | null; token: string | null } {
+  if (typeof window === "undefined") {
+    return { user: null, token: null };
+  }
+
+  // Check sessionStorage first, then localStorage
+  let storedToken = sessionStorage.getItem(AUTH_TOKEN_KEY);
+  let storedUser = sessionStorage.getItem(AUTH_USER_KEY);
+  let storage: Storage = sessionStorage;
+
+  if (!storedToken || !storedUser) {
+    storedToken = localStorage.getItem(AUTH_TOKEN_KEY);
+    storedUser = localStorage.getItem(AUTH_USER_KEY);
+    storage = localStorage;
+  }
+
+  if (storedToken && storedUser) {
+    try {
+      const user = JSON.parse(storedUser) as UserI;
+      return { user, token: storedToken };
+    } catch {
+      storage.removeItem(AUTH_TOKEN_KEY);
+      storage.removeItem(AUTH_USER_KEY);
+    }
+  }
+
+  return { user: null, token: null };
+}
+
 export default function AuthProvider({
   children,
 }: {
   children: React.ReactNode;
 }) {
-  const [user, setUser] = useState<UserI | null>(null);
+  const [user, setUser] = useState<UserI | null>(() => getStoredAuth().user);
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
 
   const isAuthenticated = user !== null;
   const isAdmin = user?.role === "admin";
-
-  const AUTH_TOKEN_KEY = "token";
-  const AUTH_USER_KEY = "user";
 
   const login = (credentials: LoginCredentialsI) => {
     setIsLoading(true);

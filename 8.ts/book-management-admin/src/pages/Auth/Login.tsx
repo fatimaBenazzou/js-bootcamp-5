@@ -5,10 +5,13 @@ import { Label } from "@/components/ui/label";
 import useAuth from "@/hooks/useAuth";
 import { loginSchema } from "@/validators/auth";
 import { useForm } from "@tanstack/react-form";
+import { Eye, EyeOff } from "lucide-react";
+import { useState } from "react";
 import { Link, useNavigate } from "react-router";
 import { toast } from "sonner";
 
 export default function Login() {
+  const [isHidden, setIsHidden] = useState(true);
   const { login, isLoading } = useAuth();
   const navigate = useNavigate();
 
@@ -83,27 +86,46 @@ export default function Login() {
           }}
         >
           {({ state, handleBlur, handleChange }) => (
-            <div className="relative">
+            <>
               <Label htmlFor="password">Password</Label>
-              <Input
-                id="password"
-                type="password"
-                placeholder="Enter your password"
-                value={state.value}
-                onChange={(e) => handleChange(e.target.value)}
-                onBlur={handleBlur}
-                autoComplete="current-password"
-                disabled={isLoading}
-                className={
-                  state.meta.errors.length > 0 && state.meta.isTouched
-                    ? "border-destructive"
-                    : ""
-                }
-              />
+              <div className="relative">
+                <Input
+                  id="password"
+                  type={isHidden ? "password" : "text"}
+                  placeholder="Enter your password"
+                  value={state.value}
+                  onChange={(e) => handleChange(e.target.value)}
+                  onBlur={handleBlur}
+                  autoComplete="current-password"
+                  disabled={isLoading}
+                  className={
+                    state.meta.errors.length > 0 && state.meta.isTouched
+                      ? "border-destructive"
+                      : ""
+                  }
+                />
+                <Button
+                  variant={"ghost"}
+                  size={"sm"}
+                  className="absolute right-0 top-1/2 -translate-1/2 h-full px-2"
+                  onClick={(e) => {
+                    e.preventDefault();
+                    e.stopPropagation();
+                    setIsHidden(!isHidden);
+                  }}
+                  disabled={isLoading}
+                >
+                  {isHidden ? (
+                    <Eye className="w-4 h-4" />
+                  ) : (
+                    <EyeOff className="w-4 h-4" />
+                  )}
+                </Button>
+              </div>
               {state.meta.errors.length > 0 && state.meta.isTouched && (
                 <p>{state.meta.errors[0]?.message}</p>
               )}
-            </div>
+            </>
           )}
         </form.Field>
         <form.Field name="rememberMe">

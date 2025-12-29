@@ -21,19 +21,41 @@ import Settings from "./pages/Settings";
 import Categories from "./pages/Categories";
 import CategoryDetails from "./pages/CategoryDetails";
 import Unauthorized from "./pages/Unauthorized";
+import useAuth from "./hooks/useAuth";
 
 export default function Routers() {
+  const { isAdmin, isAuthenticated } = useAuth();
+
   return (
     <Routes>
       {/* Auth */}
-      <Route path="/auth" element={<AuthLayout />}>
+      <Route
+        path="/auth"
+        element={
+          isAuthenticated ? <Navigate to={"/"} replace /> : <AuthLayout />
+        }
+      >
         <Route index element={<Navigate to={"/auth/login"} />} />
         <Route path="login" element={<Login />} />
         <Route path="register" element={<Register />} />
         <Route path="forgot-password" element={<ForgetPassword />} />
       </Route>
+
       {/* Admin  */}
-      <Route path="/" element={<RootLayout />}>
+      <Route
+        path="/"
+        element={
+          isAuthenticated ? (
+            isAdmin ? (
+              <RootLayout />
+            ) : (
+              <Navigate to={"/unauthorized"} />
+            )
+          ) : (
+            <Navigate to={"/auth"} />
+          )
+        }
+      >
         <Route index element={<Dashboard />} />
         <Route path="books" element={<Books />} />
         <Route path="books/:id" element={<BookDetails />} />
