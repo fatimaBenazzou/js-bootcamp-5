@@ -70,8 +70,32 @@ export default function AuthProvider({
     setIsLoading(false);
     return false;
   };
+
+  const logout = () => {
+    localStorage.removeItem(AUTH_TOKEN_KEY);
+    localStorage.removeItem(AUTH_USER_KEY);
+    sessionStorage.removeItem(AUTH_TOKEN_KEY);
+    sessionStorage.removeItem(AUTH_USER_KEY);
+    setUser(null);
+    setError(null);
+  };
+
+  const clearAuthError = () => {
+    setError(null);
+  };
   return (
-    <AuthContext.Provider value={{ user, login }}>
+    <AuthContext.Provider
+      value={{
+        user,
+        isLoading,
+        isAdmin,
+        isAuthenticated,
+        error,
+        login,
+        logout,
+        clearAuthError,
+      }}
+    >
       {children}
     </AuthContext.Provider>
   );
