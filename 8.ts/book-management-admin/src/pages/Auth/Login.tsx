@@ -1,9 +1,11 @@
+import { Button } from "@/components/ui/button";
+import { Checkbox } from "@/components/ui/checkbox";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import useAuth from "@/hooks/useAuth";
 import { loginSchema } from "@/validators/auth";
 import { useForm } from "@tanstack/react-form";
-import { useNavigate } from "react-router";
+import { Link, useNavigate } from "react-router";
 import { toast } from "sonner";
 
 export default function Login() {
@@ -104,36 +106,45 @@ export default function Login() {
             </div>
           )}
         </form.Field>
-        <form.Field
-          name="rememberMe"
-          validators={{
-            onChange: loginSchema.shape.rememberMe,
-          }}
-        >
-          {({ state, handleBlur, handleChange }) => (
-            <div className="relative">
-              <Label htmlFor="password">Password</Label>
-              <Input
-                id="password"
-                type="password"
-                placeholder="Enter your password"
-                value={state.value}
-                onChange={(e) => handleChange(e.target.value)}
-                onBlur={handleBlur}
-                autoComplete="current-password"
-                disabled={isLoading}
-                className={
-                  state.meta.errors.length > 0 && state.meta.isTouched
-                    ? "border-destructive"
-                    : ""
-                }
-              />
-              {state.meta.errors.length > 0 && state.meta.isTouched && (
-                <p>{state.meta.errors[0]?.message}</p>
-              )}
+        <form.Field name="rememberMe">
+          {({ state, handleChange }) => (
+            <div>
+              <div className="">
+                <Checkbox
+                  id="rememberMe"
+                  checked={state.value}
+                  onCheckedChange={(checked: boolean | "indeterminate") =>
+                    handleChange(checked === true)
+                  }
+                  disabled={isLoading}
+                />
+                <Label htmlFor="rememberMe">Remember me</Label>
+              </div>
+              <Button
+                type="button"
+                variant="link"
+                className="px-0 text-sm"
+                asChild
+              >
+                <Link to={"/auth/forgot-password"}>Forgot Password?</Link>
+              </Button>
             </div>
           )}
         </form.Field>
+
+        <form.Subscribe
+          selector={(state) => [state.canSubmit, state.isSubmitting]}
+        >
+          {([canSubmit, isSubmitting]) => (
+            <Button
+              type="submit"
+              className="w-full"
+              disabled={!canSubmit || isSubmitting || isLoading}
+            >
+              Sign in
+            </Button>
+          )}
+        </form.Subscribe>
       </form>
     </div>
   );
