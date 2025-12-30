@@ -105,11 +105,12 @@ export default function Login() {
                   }
                 />
                 <Button
+                  type="button"
                   variant={"ghost"}
                   size={"sm"}
                   className="absolute right-0 top-1/2 -translate-1/2 h-full px-2"
                   onClick={(e) => {
-                    e.preventDefault();
+                    // e.preventDefault();
                     e.stopPropagation();
                     setIsHidden(!isHidden);
                   }}
