@@ -1,3 +1,4 @@
+import ToggleTheme from "./ToggleTheme";
 import { SidebarTrigger } from "./ui/sidebar";
 
 export default function Navbar() {
@@ -7,10 +8,12 @@ export default function Navbar() {
         <SidebarTrigger />
 
         {/* right side */}
-        {/* theme */}
-
-        {/* notifications */}
-        {/* profil */}
+        <div>
+          {/* theme */}
+          <ToggleTheme />
+          {/* notifications */}
+          {/* profil */}
+        </div>
       </div>
     </header>
   );
