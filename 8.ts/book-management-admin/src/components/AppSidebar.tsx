@@ -21,7 +21,7 @@ import {
   SidebarMenuItem,
 } from "./ui/sidebar";
 import Logo from "./Logo";
-import { Link } from "react-router";
+import { Link, useLocation } from "react-router";
 
 const mainNavItems = [
   { label: "Dashboard", href: "/", icon: LayoutDashboard },
@@ -42,6 +42,16 @@ const otherNavItems = [
 ];
 
 export default function AppSidebar() {
+  const location = useLocation();
+
+  const isActive = (href: string) => {
+    if (href === "/") {
+      return location.pathname === "/";
+    }
+
+    return location.pathname.startsWith(href);
+  };
+
   return (
     <Sidebar collapsible="icon">
       <SidebarHeader>
@@ -55,7 +65,7 @@ export default function AppSidebar() {
             <SidebarMenu>
               {mainNavItems.map((item) => (
                 <SidebarMenuItem>
-                  <SidebarMenuButton asChild>
+                  <SidebarMenuButton asChild isActive={isActive(item.href)}>
                     <Link to={item.href}>
                       <item.icon className="w-4 h-4" />
                       <span>{item.label}</span>
@@ -72,7 +82,7 @@ export default function AppSidebar() {
             <SidebarMenu>
               {managementNavItems.map((item) => (
                 <SidebarMenuItem>
-                  <SidebarMenuButton asChild>
+                  <SidebarMenuButton asChild isActive={isActive(item.href)}>
                     <Link to={item.href}>
                       <item.icon className="w-4 h-4" />
                       <span>{item.label}</span>
@@ -89,7 +99,7 @@ export default function AppSidebar() {
             <SidebarMenu>
               {otherNavItems.map((item) => (
                 <SidebarMenuItem>
-                  <SidebarMenuButton asChild>
+                  <SidebarMenuButton asChild isActive={isActive(item.href)}>
                     <Link to={item.href}>
                       <item.icon className="w-4 h-4" />
                       <span>{item.label}</span>
