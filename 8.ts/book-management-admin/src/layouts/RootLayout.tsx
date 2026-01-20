@@ -8,10 +8,10 @@ export default function RootLayout() {
     <SidebarProvider className="flex h-screen">
       {/* sidebar */}
       <AppSidebar />
-      <div>
+      <div className="flex-1 flex flex-col overflow-hidden">
         {/* navbar */}
         <Navbar />
-        <main>
+        <main className="flex-1 overflow-x-hidden overflow-y-auto">
           <Outlet />
         </main>
         {/* footer */}

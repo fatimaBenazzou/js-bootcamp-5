@@ -14,7 +14,7 @@ export default function ToggleTheme() {
           onClick={toggleTheme}
           variant={"ghost"}
           size={"icon"}
-          className="h-9 w-9   overflow-hidden"
+          className="h-9 w-9  overflow-hidden"
           type="button"
         >
           {theme === "dark" ? (
