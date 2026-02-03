@@ -10,11 +10,11 @@ const user = {
   note: 15,
 };
 
-const config = { root: "./views" };
-const fileError = (res) => (err) => {
-  if (!err) return;
-  else res.send("Internal Error");
-};
+// const config = { root: "./views" };
+// const fileError = (res) => (err) => {
+//   if (!err) return;
+//   else res.send("Internal Error");
+// };
 // middleware
 app.set("view engine", "ejs");
 app.use(express.urlencoded({ extended: true }));
@@ -23,19 +23,17 @@ app.use("/public", express.static("./public"));
 
 // Routing
 app.get("/", (req, res) => {
-  res.sendFile(`home.html`, config, fileError(res));
+  res.render(`home`, config, fileError(res));
 });
 
 app.post("/note", (req, res) => {
   console.log(req.body);
   user.note = Number(req.body.exam);
-  res.sendFile(`note.html`, config, fileError(res));
+  res.render(`note`, config, fileError(res));
 });
 
 app.get("/about", (req, res) => {
-  res.send(`
-   
-    `);
+  res.render(`about`);
 });
 
 app.listen(PORT, () => {
