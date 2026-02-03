@@ -8,6 +8,21 @@ const user = {
   firstName: "Fatima",
   lastName: "Benazzou",
   note: 15,
+  skills: [
+    { name: "JavaScript", level: "Advanced" },
+    { name: "React", level: "Advanced" },
+    { name: "Redux Toolkit", level: "Intermediate" },
+    { name: "React Native", level: "Intermediate" },
+    { name: "Node.js", level: "Advanced" },
+    { name: "TypeScript", level: "Intermediate" },
+    { name: "Angular", level: "Intermediate" },
+    { name: "HTML & CSS", level: "Advanced" },
+    { name: "Tailwind CSS", level: "Intermediate" },
+    { name: "MongoDB", level: "Intermediate" },
+    { name: "Git", level: "Advanced" },
+    { name: "Docker", level: "Basic" },
+    { name: "Figma", level: "Basic" },
+  ],
 };
 
 // const config = { root: "./views" };
@@ -23,16 +38,17 @@ app.use("/public", express.static("./public"));
 
 // Routing
 app.get("/", (req, res) => {
-  res.render(`home`, config, fileError(res));
+  res.render(`home`);
 });
 
 app.post("/note", (req, res) => {
   console.log(req.body);
   user.note = Number(req.body.exam);
-  res.render(`note`, config, fileError(res));
+  res.render(`note`);
 });
 
 app.get("/about", (req, res) => {
+  res.locals = { user };
   res.render(`about`);
 });
 
