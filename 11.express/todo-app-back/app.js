@@ -5,6 +5,7 @@ import morgan from "morgan";
 import cors from "cors";
 import authRouter from "./routes/auth.js";
 import todoRouter from "./routes/todos.js";
+import { errorHandler, notFoundHandler } from "./middlewares/errorHandler.js";
 
 const app = express();
 
@@ -25,4 +26,9 @@ app.use(express.urlencoded({ extended: true }));
 app.use("/auth", authRouter);
 app.use("/todos", todoRouter);
 
+// not found
+app.use(notFoundHandler);
+
+// error handling
+app.use(errorHandler);
 export default app;
