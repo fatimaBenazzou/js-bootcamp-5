@@ -4,6 +4,7 @@ import helmet from "helmet";
 import morgan from "morgan";
 import cors from "cors";
 import authRouter from "./routes/auth.js";
+import todoRouter from "./routes/todos.js";
 
 const app = express();
 
@@ -22,5 +23,6 @@ app.use(express.urlencoded({ extended: true }));
 
 // routes
 app.use("/auth", authRouter);
+app.use("/todos", todoRouter);
 
 export default app;
