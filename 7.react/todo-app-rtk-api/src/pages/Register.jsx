@@ -1,5 +1,5 @@
 import { useMutation } from "@tanstack/react-query";
-import React, { useState } from "react";
+import { useState } from "react";
 import { register } from "../api/endpoints/auth";
 import useAuth from "../hooks/useAuth";
 import { useNavigate } from "react-router";
@@ -7,10 +7,10 @@ import { useNavigate } from "react-router";
 export default function Register() {
   const navigate = useNavigate();
   const { login: saveUser } = useAuth();
-  const { mutationAsync: registerUser } = useMutation({
+  const { mutateAsync: registerUser } = useMutation({
     mutationFn: register,
     onSuccess: (data) => {
-      if (!data.sucess) throw new Error(data.message || "Login failed");
+      if (!data.success) throw new Error(data.message || "Login failed");
       saveUser(data.data);
       //   toast
     },
@@ -37,7 +37,8 @@ export default function Register() {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      await registerUser(formData);
+      const { confirmPassword: _, ...registerData } = formData;
+      await registerUser(registerData);
       navigate("/");
     } catch (error) {
       console.error(error);
