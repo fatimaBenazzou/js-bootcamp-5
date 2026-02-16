@@ -4,10 +4,16 @@ import EditModal from "./EditModal";
 import TodoItem from "./TodoItem";
 import SortingDropdown from "./SortingDropdown";
 import SearchBar from "./SearchBar";
-import { useTodos } from "../hooks/useTodos";
+import { useMutation, useQueryClient } from "@tanstack/react-query";
+import { updateTodo } from "../api/endpoints/todos";
 
-export default function TodoList() {
-  const { todos, editTodo } = useTodos();
+export default function TodoList({ todos }) {
+  const queryClient = useQueryClient();
+
+  const { mutate: editMutation } = useMutation({
+    mutationFn: ({ id, text }) => updateTodo(id, { text }),
+    onSuccess: () => queryClient.invalidateQueries({ queryKey: ["todos"] }),
+  });
 
   const dialogRef = useRef(null);
   const [dialog, setDialog] = useState({ id: null, text: "" });
@@ -19,7 +25,7 @@ export default function TodoList() {
 
   const saveTodo = () => {
     if (dialog.text?.trim()) {
-      editTodo(dialog.id, dialog.text);
+      editMutation(dialog.id, dialog.text);
       dialog.current?.close();
     }
   };

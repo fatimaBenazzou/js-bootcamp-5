@@ -1,20 +1,23 @@
-import { useEffect } from "react";
 import TodoList from "./TodoList";
 import Filters from "./Filters";
-import { useTodos } from "../hooks/useTodos";
+import { useQuery } from "@tanstack/react-query";
+import { getTodos } from "../api/endpoints/todos";
 
 export default function MainApp() {
-  const { todos } = useTodos();
-  useEffect(() => {
-    localStorage.setItem("todos", JSON.stringify(todos));
-  }, [todos]);
+  const { data } = useQuery({
+    queryKey: ["todos"],
+    queryFn: () => getTodos(),
+  });
+
+  const todos = data?.data || [];
+  const itemsLeft = todos.filter((todo) => !todo.isComplete).length;
 
   return (
     <main>
       {/* todolist */}
-      <TodoList />
+      <TodoList todos={todos} />
       {/* filters */}
-      <Filters />
+      <Filters itemsLeft={itemsLeft} />
     </main>
   );
 }
