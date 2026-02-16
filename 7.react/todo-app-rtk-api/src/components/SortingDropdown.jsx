@@ -1,4 +1,4 @@
-import { useTodos } from "../hooks/useTodos";
+// import { useTodos } from "../hooks/useTodos";
 
 const sortOptions = [
   { value: "dateNewest", label: "Newest First", icon: "⬇️" },
@@ -7,7 +7,7 @@ const sortOptions = [
 ];
 
 export default function SortingDropdown() {
-  const { setSortBy } = useTodos();
+  // const { setSortBy } = useTodos();
 
   return (
     <div className="dropdown">
@@ -21,7 +21,7 @@ export default function SortingDropdown() {
         {sortOptions.map((option, index) => (
           <li
             key={option.value + index}
-            onClick={() => setSortBy(option.value)}
+            // onClick={() => setSortBy(option.value)}
           >
             <a>
               <span className="mr-1">{option.icon}</span>

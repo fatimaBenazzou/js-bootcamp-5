@@ -1,15 +1,20 @@
-import { useTodos } from "../hooks/useTodos";
+import { useMutation, useQueryClient } from "@tanstack/react-query";
+import { deleteCompletedTodo } from "../api/endpoints/todos";
 
-const buttons = ["all", "active", "completed"];
+// const buttons = ["all", "active", "completed"];
 
-export default function Filters() {
-  const { itemsLeft, filter, setFilter, clearCompleted } = useTodos();
+export default function Filters({ itemsLeft }) {
+  const queryClient = useQueryClient();
 
+  const { mutate: deleteCompletedMutation } = useMutation({
+    mutationFn: deleteCompletedTodo,
+    onSuccess: () => queryClient.invalidateQueries({ queryKey: ["todos"] }),
+  });
   return (
     <section className="card text-center text-gray-400 mt-8 flex bg-base-100 shadow-lg rounded-lg">
       <div className="card-body">
         <p>{itemsLeft} items left</p>
-        <ul role="tablist" className="tabs flex justify-center ">
+        {/* <ul role="tablist" className="tabs flex justify-center ">
           {buttons.map((button, i) => (
             <li
               key={button + i}
@@ -24,8 +29,8 @@ export default function Filters() {
               {button}
             </li>
           ))}
-        </ul>
-        <button className="btn btn-ghost" onClick={clearCompleted}>
+        </ul> */}
+        <button className="btn btn-ghost" onClick={deleteCompletedMutation}>
           Clear Completed
         </button>
       </div>

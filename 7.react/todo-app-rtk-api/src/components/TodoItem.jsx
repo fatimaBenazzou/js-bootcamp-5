@@ -1,11 +1,17 @@
-import { useTodos } from "../hooks/useTodos";
+import { useMutation, useQueryClient } from "@tanstack/react-query";
+import { deleteTodo, updateTodo } from "../api/endpoints/todos";
 
-export default function TodoItem({
-  todo,
+export default function TodoItem({ todo, handleEdit }) {
+  const queryClient = useQueryClient();
 
-  handleEdit,
-}) {
-  const { toggleTodoCompletion, deleteTodo } = useTodos();
+  const { mutate: toggleMutation } = useMutation({
+    mutationFn: () => updateTodo(todo._id, { isComplete: !todo.isComplete }),
+    onSuccess: () => queryClient.invalidateQueries({ queryKey: ["todos"] }),
+  });
+  const { mutate: deleteMutation } = useMutation({
+    mutationFn: () => deleteTodo(todo._id),
+    onSuccess: () => queryClient.invalidateQueries({ queryKey: ["todos"] }),
+  });
 
   return (
     <li className="flex justify-between items-center py-4 border-b border-base-200">
@@ -13,7 +19,7 @@ export default function TodoItem({
         <input
           checked={todo.isComplete}
           type="checkbox"
-          onChange={() => toggleTodoCompletion(todo.id)}
+          onChange={toggleMutation}
           className={`checkbox checkbox-primary hover:scale-110 cursor-pointer transition-transform `}
         />
         <p className={todo.isComplete ? "line-through text-gray-400" : ""}>
@@ -30,7 +36,7 @@ export default function TodoItem({
         </button>
         <button
           className="btn btn-ghost btn-sm hover:btn-error hover:scale-110 transition-all"
-          onClick={() => deleteTodo(todo.id)}
+          onClick={() => deleteMutation(todo.id)}
         >
           <span className="icon-[iwwa--delete] text-base-content"></span>
         </button>

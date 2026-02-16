@@ -1,15 +1,22 @@
+import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { useState } from "react";
-import { useTodos } from "../hooks/useTodos";
+import { createTodo } from "../api/endpoints/todos";
 
 export default function AddTodo() {
-  const { addTodo } = useTodos();
+  const queryClient = useQueryClient();
+
+  const { mutate: addMutation } = useMutation({
+    mutationFn: createTodo,
+    onSuccess: () => queryClient.invalidateQueries({ queryKey: ["todos"] }),
+  });
+
   const [newTodoText, setNewTodoText] = useState("");
 
   const handleAddTodo = (e) => {
     e.preventDefault();
 
     if (newTodoText.trim()) {
-      addTodo(newTodoText);
+      addMutation({ text: newTodoText.trim() });
       setNewTodoText("");
     }
   };
