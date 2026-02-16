@@ -30,13 +30,13 @@ export default function TodoItem({ todo, handleEdit }) {
       <div className="flex">
         <button
           className="btn btn-ghost btn-sm hover:btn-primary hover:scale-110 transition-all"
-          onClick={() => handleEdit(todo.id, todo.text)}
+          onClick={() => handleEdit(todo._id, todo.text)}
         >
           <span className="icon-[iwwa--edit] text-base-content"></span>
         </button>
         <button
           className="btn btn-ghost btn-sm hover:btn-error hover:scale-110 transition-all"
-          onClick={() => deleteMutation(todo.id)}
+          onClick={() => deleteMutation(todo._id)}
         >
           <span className="icon-[iwwa--delete] text-base-content"></span>
         </button>

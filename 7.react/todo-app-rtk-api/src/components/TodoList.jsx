@@ -25,7 +25,7 @@ export default function TodoList({ todos }) {
 
   const saveTodo = () => {
     if (dialog.text?.trim()) {
-      editMutation(dialog.id, dialog.text);
+      editMutation({ id: dialog.id, text: dialog.text });
       dialog.current?.close();
     }
   };
@@ -44,7 +44,7 @@ export default function TodoList({ todos }) {
           <ul>
             {todos.length > 0 ? (
               todos.map((todo) => (
-                <TodoItem key={todo.id} todo={todo} handleEdit={handleEdit} />
+                <TodoItem key={todo._id} todo={todo} handleEdit={handleEdit} />
               ))
             ) : (
               <li className="p-12 text-center">
