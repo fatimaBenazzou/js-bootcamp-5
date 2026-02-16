@@ -6,12 +6,14 @@ import { useNavigate } from "react-router";
 
 export default function Register() {
   const navigate = useNavigate();
-  const { login: saveUser } = useAuth();
+  const { login: saveUser, isAuthenticated } = useAuth();
   const { mutateAsync: registerUser } = useMutation({
     mutationFn: register,
     onSuccess: (data) => {
+      console.log(isAuthenticated);
       if (!data.success) throw new Error(data.message || "Login failed");
       saveUser(data.data);
+      console.log(isAuthenticated);
       //   toast
     },
     onError: (error) => {

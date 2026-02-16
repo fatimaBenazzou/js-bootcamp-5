@@ -6,15 +6,14 @@ export default function useAuth() {
   const dispatch = useDispatch();
   const { user, isAuthenticated } = useSelector((state) => state.auth);
 
-  const loginFunction = useCallback(() => {
-    (userData) => dispatch(login(userData));
-  }, [dispatch]);
+  const loginFunction = useCallback(
+    (userData) => dispatch(login(userData)),
+    [dispatch],
+  );
 
   const logoutFunction = useCallback(() => {
-    () => {
-      dispatch(logout());
-      localStorage.removeItem("token");
-    };
+    dispatch(logout());
+    localStorage.removeItem("token");
   }, [dispatch]);
 
   return {
