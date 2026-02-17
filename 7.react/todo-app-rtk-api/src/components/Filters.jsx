@@ -1,9 +1,11 @@
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { deleteCompletedTodo } from "../api/endpoints/todos";
+import { useTodoParams } from "../hooks/useUrlParams";
 
-// const buttons = ["all", "active", "completed"];
+const buttons = ["all", "active", "completed"];
 
 export default function Filters({ itemsLeft }) {
+  const { filter, setFilter } = useTodoParams();
   const queryClient = useQueryClient();
 
   const { mutate: deleteCompletedMutation } = useMutation({
@@ -14,7 +16,7 @@ export default function Filters({ itemsLeft }) {
     <section className="card text-center text-gray-400 mt-8 flex bg-base-100 shadow-lg rounded-lg">
       <div className="card-body">
         <p>{itemsLeft} items left</p>
-        {/* <ul role="tablist" className="tabs flex justify-center ">
+        <ul role="tablist" className="tabs flex justify-center ">
           {buttons.map((button, i) => (
             <li
               key={button + i}
@@ -29,7 +31,7 @@ export default function Filters({ itemsLeft }) {
               {button}
             </li>
           ))}
-        </ul> */}
+        </ul>
         <button className="btn btn-ghost" onClick={deleteCompletedMutation}>
           Clear Completed
         </button>

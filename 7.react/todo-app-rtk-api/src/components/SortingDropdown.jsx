@@ -1,4 +1,4 @@
-// import { useTodos } from "../hooks/useTodos";
+import { useTodoParams } from "../hooks/useUrlParams";
 
 const sortOptions = [
   { value: "dateNewest", label: "Newest First", icon: "⬇️" },
@@ -7,7 +7,7 @@ const sortOptions = [
 ];
 
 export default function SortingDropdown() {
-  // const { setSortBy } = useTodos();
+  const { setSort } = useTodoParams();
 
   return (
     <div className="dropdown">
@@ -19,10 +19,7 @@ export default function SortingDropdown() {
         className="dropdown-content menu bg-base-100 rounded-box z-1 w-52 p-2 shadow-sm"
       >
         {sortOptions.map((option, index) => (
-          <li
-            key={option.value + index}
-            // onClick={() => setSortBy(option.value)}
-          >
+          <li key={option.value + index} onClick={() => setSort(option.value)}>
             <a>
               <span className="mr-1">{option.icon}</span>
               <span className="hidden sm:inline">{option.label}</span>

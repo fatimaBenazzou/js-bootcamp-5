@@ -11,14 +11,15 @@ export default function LoggedInProvider({ children }) {
     queryFn: async () => {
       try {
         const user = await checkAuth();
-        if (!user.success) throw new Error("Authentication failed");
-        login(user.data);
+        user.success ? login(user.data) : logout();
         return user.data;
       } catch (error) {
         logout();
         throw error;
       }
     },
+    retry: false,
+    enabled: !!localStorage.getItem("token"),
   });
   return <>{children}</>;
 }

@@ -6,8 +6,11 @@ import SortingDropdown from "./SortingDropdown";
 import SearchBar from "./SearchBar";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { updateTodo } from "../api/endpoints/todos";
+import Pagination from "./Pagination";
+import { useTodoParams } from "../hooks/useUrlParams";
 
-export default function TodoList({ todos }) {
+export default function TodoList({ todos, pagination }) {
+  const { setPage } = useTodoParams();
   const queryClient = useQueryClient();
 
   const { mutate: editMutation } = useMutation({
@@ -54,6 +57,10 @@ export default function TodoList({ todos }) {
               </li>
             )}
           </ul>
+
+          {pagination && (
+            <Pagination pagination={pagination} setPage={setPage} />
+          )}
         </div>
       </div>
       <EditModal

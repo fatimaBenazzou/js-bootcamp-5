@@ -6,14 +6,16 @@ import { useNavigate } from "react-router";
 
 export default function Register() {
   const navigate = useNavigate();
-  const { login: saveUser, isAuthenticated } = useAuth();
-  const { mutateAsync: registerUser } = useMutation({
+  const { login: saveUser } = useAuth();
+  const {
+    mutateAsync: registerUser,
+    error,
+    isError,
+  } = useMutation({
     mutationFn: register,
     onSuccess: (data) => {
-      console.log(isAuthenticated);
       if (!data.success) throw new Error(data.message || "Login failed");
       saveUser(data.data);
-      console.log(isAuthenticated);
       //   toast
     },
     onError: (error) => {
@@ -30,11 +32,8 @@ export default function Register() {
     confirmPassword: "",
   });
 
-  const [error, setError] = useState("");
-
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
-    setError("");
   };
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -49,9 +48,11 @@ export default function Register() {
   return (
     <>
       {/* errors */}
-      <div className="alert alert-error mb-4">
-        <span>{error}</span>
-      </div>
+      {isError && (
+        <div className="alert alert-error mb-4">
+          <span>{error}</span>
+        </div>
+      )}
 
       {/* form */}
       <form onSubmit={handleSubmit}>
