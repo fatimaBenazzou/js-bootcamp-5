@@ -1,6 +1,5 @@
 import { Types } from "mongoose";
-import { unknown } from "zod";
-
+import { Request } from "express";
 declare interface BaseDocument {
   _id: Types.ObjectId;
   createdAt: Date;
