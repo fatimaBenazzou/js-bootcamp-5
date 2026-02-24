@@ -58,5 +58,25 @@ export async function checkAuth(
     }
 
     (req as AuthenticatedRequest).user = user;
-  } catch (error) {}
+    next();
+  } catch (error) {
+    res.status(401).json({
+      success: false,
+      message: "Error in validating token",
+      error: error instanceof Error ? error.message : String(error),
+    });
+  }
+}
+
+export function isAdmin(req: Request, res: Response, next: NextFunction): void {
+  const authReq = req as AuthenticatedRequest;
+
+  if (authReq.user?.role === "admin") {
+    next();
+  } else {
+    res.status(401).json({
+      success: false,
+      message: "You are not an admin, you can't access this route",
+    });
+  }
 }
