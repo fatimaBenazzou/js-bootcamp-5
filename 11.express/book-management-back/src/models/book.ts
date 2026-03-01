@@ -1,0 +1,157 @@
+import { model, type Model, Schema } from "mongoose";
+import type { IBook } from "../types/models/book.js";
+
+const bookSchema = new Schema<IBook>(
+  {
+    title: {
+      type: String,
+      required: true,
+    },
+    author: {
+      type: Schema.Types.ObjectId,
+      ref: "author",
+      required: true,
+    },
+    serialNumber: {
+      type: String,
+      required: true,
+      unique: true,
+    },
+    price: {
+      original: Number,
+      current: {
+        type: Number,
+        required: true,
+      },
+    },
+    rentalPrice: {
+      type: Number,
+      required: true,
+      default: 0,
+      min: 0,
+    },
+    lateFeePerDay: {
+      type: Number,
+      required: true,
+      default: 1,
+      min: 0,
+    },
+    totalStock: {
+      type: Number,
+      default: 0,
+      min: 0,
+    },
+    availableStock: {
+      type: Number,
+      default: 0,
+      min: 0,
+    },
+    status: {
+      type: String,
+      enum: ["in-shelf", "out-of-stock"],
+      default: "in-shelf",
+    },
+    description: {
+      type: String,
+      required: true,
+    },
+    cover: {
+      type: String,
+    },
+    keywords: [{ type: String }],
+    category: {
+      type: Schema.Types.ObjectId,
+      ref: "categories",
+    },
+  },
+  {
+    toJSON: {
+      versionKey: false,
+      virtuals: true,
+    },
+    toObject: {
+      versionKey: false,
+      virtuals: true,
+    },
+    timestamps: true,
+  },
+);
+
+bookSchema.pre("save", async function () {
+  if (this.availableStock > this.totalStock) {
+    throw new Error("Available stock cannot exceed total stock");
+  }
+
+  // Auto-calculate status based on availableStock
+  if (this.availableStock === 0) {
+    this.status = "out-of-stock";
+  } else {
+    this.status = "in-shelf";
+  }
+});
+
+bookSchema.pre("findOneAndUpdate", function () {
+  const update = this.getUpdate() as {
+    $set?: { availableStock?: number; status?: string };
+  };
+  if (update.$set && update.$set.availableStock !== undefined) {
+    update.$set.status =
+      update.$set.availableStock === 0 ? "out-of-stock" : "in-shelf";
+  }
+});
+
+bookSchema.post("findOneAndUpdate", async function () {
+  const update = this.getUpdate() as Record<string, unknown>;
+  const inc = update?.$inc as Record<string, number> | undefined;
+
+  // Only run for $inc on availableStock
+  if (!inc || inc.availableStock === undefined) return;
+
+  const docId = (this.getQuery() as { _id?: unknown })._id;
+  if (!docId) return;
+
+  const doc = (await this.model
+    .findById(docId)
+    .select("availableStock status")
+    .lean()) as { availableStock: number; status: string } | null;
+  if (!doc) return;
+
+  const newStatus = doc.availableStock === 0 ? "out-of-stock" : "in-shelf";
+  if (doc.status !== newStatus) {
+    await this.model.updateOne({ _id: docId }, { $set: { status: newStatus } });
+  }
+});
+
+bookSchema.pre("findOneAndDelete", async function () {
+  const query = this.getQuery() as { _id?: unknown };
+  const bookId = query._id;
+  if (bookId) {
+    const rateModel = (await import("./rate.js")).default;
+    await rateModel.deleteMany({ bookId });
+  }
+});
+
+bookSchema.pre(
+  "deleteOne",
+  { document: true, query: false },
+  async function () {
+    const rateModel = (await import("./rate.js")).default;
+    await rateModel.deleteMany({ bookId: this._id });
+  },
+);
+
+// Text search index for title, description, keywords
+bookSchema.index(
+  { title: "text", description: "text", keywords: "text" },
+  { name: "search_index" },
+);
+
+// Indexes for efficient queries
+bookSchema.index({ author: 1 });
+bookSchema.index({ status: 1 });
+bookSchema.index({ category: 1 });
+bookSchema.index({ createdAt: -1 });
+
+const bookModel: Model<IBook> = model<IBook>("books", bookSchema);
+
+export default bookModel;

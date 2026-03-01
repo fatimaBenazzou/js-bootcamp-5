@@ -1,10 +1,12 @@
+import { Types } from "mongoose";
+
 declare interface UserBooks {
   borrowed: Types.ObjectId[];
   read: Types.ObjectId[];
   favorites: Types.ObjectId[];
 }
 
-interface BookPrice {
+declare interface BookPrice {
   original?: number;
   current: number;
 }
