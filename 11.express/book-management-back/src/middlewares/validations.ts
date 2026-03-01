@@ -10,6 +10,7 @@ export function validateBodySchema<T>(schema: ZodSchema<T>) {
   ): Promise<void> {
     const parsed = schema.safeParse(req.body);
     if (parsed.success) {
+      req.body = parsed.data;
       next();
     } else {
       res.status(400).json({

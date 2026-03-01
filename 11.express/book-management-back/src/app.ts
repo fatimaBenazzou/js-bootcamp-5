@@ -3,9 +3,14 @@ import { errorHandler } from "./middlewares/errorHandler.js";
 import authRouter from "./routers/auth.js";
 import cors from "cors";
 import { StatusCodes } from "http-status-codes";
+import morgan from "morgan";
+import helmet from "helmet";
 
 const app = express();
 
+app.set("trust proxy", true);
+
+app.use(helmet());
 // CORS configuration
 app.use(
   cors({
@@ -14,6 +19,9 @@ app.use(
   }),
 );
 
+if (process.env.NODE_ENV === "development") {
+  app.use(morgan("dev"));
+}
 // Body parsing
 app.use(express.json({ limit: "10mb" }));
 app.use(express.urlencoded({ extended: true, limit: "10mb" }));
