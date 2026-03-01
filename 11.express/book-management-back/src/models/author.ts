@@ -1,4 +1,5 @@
 import { Model, model, Schema } from "mongoose";
+import type { IAuthor } from "../types/models/author.js";
 
 const authorSchema = new Schema<IAuthor>(
   {

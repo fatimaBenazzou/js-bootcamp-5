@@ -1,4 +1,7 @@
-declare interface IRating extends BaseDocument {
+import { Types } from "mongoose";
+import type { BaseDocument } from "../common.js";
+
+export interface IRating extends BaseDocument {
   /** Reference to the user who rated */
   ratedBy: Types.ObjectId;
   /** Reference to the book being rated */

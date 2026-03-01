@@ -1,17 +1,18 @@
 import { Types } from "mongoose";
+import type { BookStatus } from "../common.js";
 
-declare interface UserBooks {
+export interface UserBooks {
   borrowed: Types.ObjectId[];
   read: Types.ObjectId[];
   favorites: Types.ObjectId[];
 }
 
-declare interface BookPrice {
+export interface BookPrice {
   original?: number;
   current: number;
 }
 
-declare interface IBook {
+export interface IBook {
   /** Book title */
   title: string;
   /** Reference to the author document */

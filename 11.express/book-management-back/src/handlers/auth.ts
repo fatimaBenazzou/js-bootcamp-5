@@ -2,7 +2,7 @@ import { Request, Response } from "express";
 import userModel from "../models/user.js";
 import jwt from "jsonwebtoken";
 import { StatusCodes } from "http-status-codes";
-import type { AuthenticatedRequest } from "../types/index.js";
+import type { AuthenticatedRequest } from "../types/express.js";
 
 interface JwtPayload {
   _id: string;

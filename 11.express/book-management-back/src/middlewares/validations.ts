@@ -1,6 +1,6 @@
 import { NextFunction, Request, Response } from "express";
 import { prettifyError, ZodSchema } from "zod/v4";
-import type { RequestWithParsedQuery } from "../types/index.js";
+import type { RequestWithParsedQuery } from "../types/express.js";
 
 export function validateBodySchema<T>(schema: ZodSchema<T>) {
   return async function (

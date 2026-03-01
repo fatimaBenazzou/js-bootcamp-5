@@ -1,4 +1,6 @@
-declare interface IUser extends BaseDocument {
+import type { BaseDocument, UserRole } from "../common.js";
+
+export interface IUser extends BaseDocument {
   firstName: string;
   lastName: string;
   email: string;
@@ -8,6 +10,6 @@ declare interface IUser extends BaseDocument {
   role: UserRole;
 }
 
-declare interface IUserDocument extends IUser {
+export interface IUserDocument extends IUser {
   comparePassword(candidatePassword: string): Promise<boolean>;
 }
